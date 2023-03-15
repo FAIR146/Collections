@@ -1,7 +1,6 @@
 package cipher;
 
 import java.util.HashMap;
-import java.util.Random;
 
 public class CipherS {
     private final String keyWord;
@@ -45,14 +44,8 @@ public class CipherS {
     private String makeAlphabet(String keyWord, String originalAlphabet) {
         StringBuilder alphabet = new StringBuilder();
 
-        fillStringBuilder(alphabet, keyWord);
+        fillStringBuilderInStringBuilder(alphabet, keyWord);
 
-        if (withCases) {
-            fillStringBuilder(alphabet,originalAlphabet.toLowerCase());
-            fillStringBuilder(alphabet,originalAlphabet.toUpperCase());
-        } else {
-            fillStringBuilder(alphabet, originalAlphabet);
-        }
 
         char lastLetter = alphabet.charAt(alphabet.length() - 1);
         alphabet.deleteCharAt(alphabet.length() - 1);
@@ -65,6 +58,12 @@ public class CipherS {
         if (withReverse) {
             alphabet = reverse(alphabet);
         }
+
+    }
+    private void withCases (StringBuilder alphabet) {
+        fillStringBuilderInStringBuilder(alphabet,originalAlphabet.toLowerCase());
+        fillStringBuilderInStringBuilder(alphabet,originalAlphabet.toUpperCase());
+        fillStringBuilderInString(originalAlphabet, toLowerCase(alphabet));
 
     }
 
@@ -90,10 +89,17 @@ public class CipherS {
         }
     }
 
-    private void fillStringBuilder (StringBuilder alphabet,String word) {
+    private void fillStringBuilderInStringBuilder (StringBuilder alphabet, String word) {
         for (int i = 0; i < word.length(); i++) {
             if (alphabet.indexOf(String.valueOf((word.charAt(i)))) == -1) {
                 alphabet.append(word.charAt(i));
+            }
+        }
+    }
+    private void fillStringBuilderInString (String alphabet, StringBuilder word) {
+        for (int i = 0; i < word.length(); i++) {
+            if (word.indexOf(String.valueOf((alphabet.charAt(i)))) == -1) {
+                word.append(alphabet.charAt(i));
             }
         }
     }
@@ -103,6 +109,14 @@ public class CipherS {
             encoding.put(originalAlphabet.charAt(i), alphabet.charAt(i));
             decoding.put(alphabet.charAt(i), originalAlphabet.charAt(i));
         }
+    }
+    public static StringBuilder toLowerCase (StringBuilder builder) {
+        for (int i = 0; i < builder.length(); i++) {
+            if (Character.isUpperCase(builder.charAt(i))) {
+                builder.setCharAt(i, Character.toLowerCase(builder.charAt(i)));
+            }
+        }
+        return builder;
     }
 
     public static CipherBuilder builder() {
