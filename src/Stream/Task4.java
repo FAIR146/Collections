@@ -2,7 +2,7 @@ package Stream;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+// Убрать из массива повторяющиеся элементы
 public class Task4 {
     public static void main(String[] args) {
         List<Integer> numbers = List.of(1,2,4,4,6);
