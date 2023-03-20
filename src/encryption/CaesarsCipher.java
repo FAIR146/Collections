@@ -16,6 +16,7 @@ public class CaesarsCipher {
         fillMaps();
     }
 
+
     public String encode (String message) {
         StringBuilder encodedMessage = new StringBuilder();
         for (int i = 0; i < message.length(); i++) {
