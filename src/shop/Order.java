@@ -1,43 +1,60 @@
 package shop;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Order {
-    private String registerDate;
-    private final int numberOrder;
-    private static int numberOrderGenerator = 1;
-    private String paymentDate;
-    private List<String> listOfProducts;
+    private Date registerDate;
+    private final long numberOrder;
+    private static long numberOrderGenerator = 1;
+    private Date paymentDate;
+    private List<Product> products = new ArrayList<>();
     private int cost;
-    private final int discountMore1000 = 3;
+    private final int discountMore1000 = 5;
     private final int discountToys = 10;
-    public Order (String registerDate ,String paymentDate) {
-        this.registerDate = registerDate;
+    public Order () {
         numberOrder = numberOrderGenerator;
         numberOrderGenerator++;
+    }
+    public void setRegisterDate (Date registerDate) {
+        this.registerDate = registerDate;
+    }
+    public void setPaymentDate (Date paymentDate) {
         this.paymentDate = paymentDate;
     }
-    public String getRegisterDate() {
+    public Date getRegisterDate() {
         return registerDate;
     }
-    public int getNumberOrder () {
+    public long getNumberOrder () {
         return numberOrder;
     }
-    public String getPaymentDate () {
+    public Date getPaymentDate () {
         return paymentDate;
     }
-    public List<String> getListOfProducts () {
-        return listOfProducts;
-    }
+
     public void setCost (int cost) {
         this.cost = cost;
     }
     public int getCost () {
         return cost;
     }
-    public void setListOfProducts (String name) {
-        listOfProducts.add(name);
+    public List<Product> getProducts () {
+        return products;
+    }
+    public void addProduct (Product product) {
+        products.add(product);
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "registerDate=" + registerDate +
+                ", numberOrder=" + numberOrder +
+                ", paymentDate=" + paymentDate +
+                ", products=" + products +
+                ", cost=" + cost +
+                '}';
     }
 
 }

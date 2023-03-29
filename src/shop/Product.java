@@ -3,9 +3,9 @@ package shop;
 import java.util.List;
 
 public class Product {
-    String type;
-    int cost;
-    String name;
+    private final String type;
+    public final int cost;
+    private final String name;
 
     public Product (String type, int cost, String name) {
         this.cost = cost;
@@ -22,12 +22,19 @@ public class Product {
         return type;
     }
 
-    public void findProductCostMore100 (List<Product> products) {
-        for (int i = 0; i < products.size(); i++) {
-            if (products.get(i).cost >= 100) {
-                System.out.println(products.get(i).getName());
-            }
-        }
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+
+        return new Product(type, cost, name);
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "type='" + type + '\'' +
+                ", cost=" + cost +
+                ", name='" + name + '\'' +
+                '}';
     }
 
 }
