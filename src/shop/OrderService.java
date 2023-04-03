@@ -25,6 +25,7 @@ public class OrderService {
         orders.add(order2);
         order.addProduct(pasta);
         order.addProduct(sausages);
+        order.addProduct(teddyBear);
         order.setRegisterDate(new Date());
         order.setPaymentDate(new Date());
         order1.addProduct(jeans);
@@ -38,9 +39,10 @@ public class OrderService {
 //    public List<Order> applyDiscountToOrdersOver1000 () {
 //        return orders.stream()
 //                .filter(order -> order.getCost() > 1000)
-//                .
+//                .forEach();
 //    }
 //    public List<Order> findTop3PopularProducts () {
+//        for (int i = 0; i < or)
 //        return orders.stream()
 //                .filter(order -> order.ge)
 //    }
@@ -49,4 +51,6 @@ public class OrderService {
                 .filter(order -> order.getPaymentDate() == null)
                 .collect(Collectors.toList());
     }
+
+
 }

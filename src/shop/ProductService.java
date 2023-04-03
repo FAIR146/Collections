@@ -12,7 +12,7 @@ public class ProductService {
     Product toyCar = new Product("toy", 500, "toyCar");
     Product jeans = new Product("wear", 900, "jeans");
     Product iphone = new Product("technic", 60000, "iphone");
-    ArrayList<Product> products;
+     ArrayList<Product> products;
 
     public ProductService () {
         products = new ArrayList<>(List.of(pasta, teddyBear, pencil, sausages, toyCar, jeans, iphone));
@@ -28,13 +28,12 @@ public class ProductService {
 //    public List<Product> applyDiscountToToys () {
 //        products.stream()
 //                .filter(product -> "toy".equals(product.getType()))
-//
+//                .peek(product -> )
 //    }
 
-    //    private List<Product> copyProductList () {
-//
-////        return products.clone();
-//
-//    }
+        private List<Product> copyProductList () {
+            return (List<Product>) products.clone();
+
+    }
 
 }

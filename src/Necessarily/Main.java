@@ -1,19 +1,19 @@
 package Necessarily;
 
+import java.io.BufferedWriter;
+
 public class Main {
     public static void main(String[] args) {
-        Product water = new Product();
-        Product milk = new Product();
-        System.out.println(water.getId());
-        System.out.println(milk.getId());
-
-
-        //        Animal animal = new Animal("animal", 1);
-//        Dog dog = new Dog("Sharik", 5);
-//        Cow cow = new Cow(8, "Telenok");
-//
-//        dog.voice();
-//        cow.voice();
-//        animal.voice();
+        Bmw bmw = new Bmw();
+        bmw.setValue(150, "x5", "blue");
+        Truck truck = new Truck();
+        truck.setValue(140, "Actros", 10);
+        Vehicle vehicle = new Bmw();
+        Bmw bmw1 = (Bmw) vehicle;
+        Bmw bmw2 = (Bmw) returnVehicle();
+    }
+    public static Vehicle returnVehicle () {
+        Bmw bmw = new Bmw();
+        return bmw;
     }
 }
