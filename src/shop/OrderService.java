@@ -34,23 +34,38 @@ public class OrderService {
         order2.addProduct(iphone);
         order2.addProduct(pencil);
         order2.setRegisterDate(new Date());
+        products.put(pasta.getName(),0);
+        products.put(teddyBear.getName(), 0);
+        products.put(pencil.getName(), 0);
+        products.put(sausages.getName(), 0);
+        products.put(toyCar.getName(), 0);
+        products.put(jeans.getName(), 0);
+        products.put(iphone.getName(), 0);
     }
 
-//    public List<Order> applyDiscountToOrdersOver1000 () {
-//        return orders.stream()
-//                .filter(order -> order.getCost() > 1000)
-//                .forEach();
-//    }
+    public List<Order> applyDiscountToOrdersOver1000 () {
+          orders.stream()
+                  .filter(order -> order.getCost() > 1000)
+                  .map(order -> (order.getCost() - order.getCost() * 0.05))
+                  .collect(Collectors.toList())
+                  .forEach(System.out::println);
+          return orders;
+    }
 //    public List<Order> findTop3PopularProducts () {
-//        for (int i = 0; i < or)
-//        return orders.stream()
-//                .filter(order -> order.ge)
+//        for (int i = 0; i < products.size(); i++) {
+//            orders.stream()
+//                    .forEach(order -> order.getProducts());
+//        }
+//        return ;
 //    }
     public List<Order> findUnPaidOrders () {
         return orders.stream()
                 .filter(order -> order.getPaymentDate() == null)
                 .collect(Collectors.toList());
     }
+
+
+
 
 
 }

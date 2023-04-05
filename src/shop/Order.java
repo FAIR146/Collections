@@ -57,4 +57,8 @@ public class Order {
                 '}';
     }
 
+//    @Override
+//    protected Object clone() throws CloneNotSupportedException {
+//        return new Order(cost, paymentDate, numberOrder, registerDate);
+//    }
 }
