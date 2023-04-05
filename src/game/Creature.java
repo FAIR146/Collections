@@ -4,13 +4,22 @@ public class Creature {
     private int hp;
     private int hitSize;
     private double lvl = 1;
-    private int xp;
+    private double xp;
+    private int startHp;
 
-    public void setXp(int xp) {
+    public void setStartHp(int startHp) {
+        this.startHp = startHp;
+    }
+
+    public int getStartHp() {
+        return startHp;
+    }
+
+    public void setXp(double xp) {
         this.xp = xp;
     }
 
-    public int getXp() {
+    public double getXp() {
         return xp;
     }
 
@@ -22,7 +31,7 @@ public class Creature {
         this.hitSize = hitSize;
     }
 
-    public void setLvl (int lvl) {
+    public void setLvl (double lvl) {
         this.lvl = lvl;
     }
 
