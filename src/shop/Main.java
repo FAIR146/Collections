@@ -12,7 +12,7 @@ public class Main {
 //        System.out.println(productService.findProductCostMore100Meal());
         OrderService orderService = new OrderService();
 //        System.out.println(orderService.findUnPaidOrders());
-        productService.applyDiscountToToys();
+
         System.out.println(orderService.applyDiscountToOrdersOver1000());
 
     }

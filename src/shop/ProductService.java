@@ -12,11 +12,15 @@ public class ProductService {
     Product toyCar = new Product("toy", 500, "toyCar");
     Product jeans = new Product("wear", 900, "jeans");
     Product iphone = new Product("technic", 60000, "iphone");
-    double discountForToys = 0.1;
-     ArrayList<Product> products;
+    private double discountForToys = 0.1;
+    private ArrayList<Product> products;
+    private String alphabet = "abcdefghijklmnopqrstuvwxyz";
 
     public ProductService () {
         products = new ArrayList<>(List.of(pasta, teddyBear, pencil, sausages, toyCar, jeans, iphone));
+    }
+    public void printProductsInAlphabeticalOrder () {
+
     }
 
     public List<Product> findProductCostMore100Meal () {
@@ -30,11 +34,9 @@ public class ProductService {
         List<Product> copyProductList = (List<Product>) products.clone();
         copyProductList.stream()
                 .filter(product -> "toy".equals(product.getType()))
-                .map(product -> (product.getCost() - product.getCost() * 0.1))
-                .collect(Collectors.toList());
-//                .forEach(System.out::println)
-        return copyProductList;
+                .peek(product -> product.setCost((int)(product.getCost() * 0.9)));
 
+        return copyProductList;
     }
 
         private List<Product> copyProductList () {
