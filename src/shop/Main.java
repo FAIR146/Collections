@@ -12,8 +12,9 @@ public class Main {
 //        System.out.println(productService.findProductCostMore100Meal());
         OrderService orderService = new OrderService();
 //        System.out.println(orderService.findUnPaidOrders());
-
-        System.out.println(orderService.applyDiscountToOrdersOver1000());
+//        System.out.println(orderService.findOrdersBetweenTwoDates());
+//        productService.printProductsInAlphabeticalOrder();
+        orderService.findTop3PopularProducts();
 
     }
 }

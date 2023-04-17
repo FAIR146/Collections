@@ -10,9 +10,9 @@ public class Order {
     private static long numberOrderGenerator = 1;
     private Date paymentDate;
     private List<Product> products = new ArrayList<>();
-    private int cost;
     private final int discountMore1000 = 5;
     private final int discountToys = 10;
+    private double discount;
     public Order () {
         numberOrder = numberOrderGenerator;
         numberOrderGenerator++;
@@ -33,12 +33,20 @@ public class Order {
         return paymentDate;
     }
 
-    public void setCost (int cost) {
-        this.cost = cost;
+    public Integer getCost () {
+        return (int) (products.stream()
+                .mapToInt(product -> product.getCost())
+                .sum() * (1.0 - discount));
     }
-    public int getCost () {
-        return cost;
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
     }
+
+    public double getDiscount() {
+        return discount;
+    }
+
     public List<Product> getProducts () {
         return products;
     }
@@ -53,12 +61,11 @@ public class Order {
                 ", numberOrder=" + numberOrder +
                 ", paymentDate=" + paymentDate +
                 ", products=" + products +
-                ", cost=" + cost +
                 '}';
     }
 
 //    @Override
 //    protected Object clone() throws CloneNotSupportedException {
-//        return new Order(cost, paymentDate, numberOrder, registerDate);
+//        return new Order (paymentDate, numberOrder, registerDate);
 //    }
 }

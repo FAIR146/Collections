@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Product {
     private final String type;
-    public int cost;
+    private Integer cost;
     private final String name;
 
     public Product (String type, int cost, String name) {
@@ -15,7 +15,7 @@ public class Product {
     public String getName () {
         return name;
     }
-    public int getCost () {
+    public Integer getCost () {
         return cost;
     }
     public String getType () {

@@ -15,8 +15,8 @@ public class OrderService {
     Product jeans = new Product("wear", 900, "jeans");
     Product iphone = new Product("technic", 60000, "iphone");
     ArrayList<Order> orders = new ArrayList<>();
-    HashMap<String, Integer> products;
-    public OrderService () {
+
+    public OrderService() {
         Order order = new Order();
         Order order1 = new Order();
         Order order2 = new Order();
@@ -26,6 +26,8 @@ public class OrderService {
         order.addProduct(pasta);
         order.addProduct(sausages);
         order.addProduct(teddyBear);
+        order.addProduct(teddyBear);
+        order.addProduct(pasta);
         order.setRegisterDate(new Date());
         order.setPaymentDate(new Date());
         order1.addProduct(jeans);
@@ -33,28 +35,45 @@ public class OrderService {
         order1.setPaymentDate(new Date());
         order2.addProduct(iphone);
         order2.addProduct(pencil);
+        order2.addProduct(pencil);
         order2.setRegisterDate(new Date());
-//        products.put(pasta.getName(),0);
-//        products.put(teddyBear.getName(), 0);
-//        products.put(pencil.getName(), 0);
-//        products.put(sausages.getName(), 0);
-//        products.put(toyCar.getName(), 0);
-//        products.put(jeans.getName(), 0);
-//        products.put(iphone.getName(), 0);
+
     }
 
-    public List<Order> applyDiscountToOrdersOver1000 () {
-          orders.stream()
-                  .filter(order -> order.getCost() > 1000)
-                  .peek(order -> order.setCost((int)(order.getCost() * 0.10)));
-          return orders;
+    public List<Order> applyDiscountToOrdersOver1000() {
+        orders.stream()
+                .filter(order -> order.getCost() > 1000)
+                .forEach(order -> order.setDiscount(0.05));
+        return orders;
     }
-//    public List<Order> findTop3PopularProducts () {
-//        for (int i = 0; i < products.size(); i++) {
-//            products.;
-//        }
-//        return ;
-//    }
+
+    public List<Order> findTop3PopularProducts() {
+        HashMap<String, Integer> products = new HashMap<>();
+        for (Order order : orders) {
+            for (Product product : order.getProducts()) {
+                Integer value = products.get(product.getName());
+                if (value == null) {
+                    products.put(product.getName(), 1);
+                } else {
+                    products.put(product.getName(), value + 1);
+                }
+
+            }
+        }
+        System.out.println(products);
+        return null;
+    }
+
+
+    public List<Order> findOrdersBetweenTwoDates () {
+        Date date = new Date (1681317816000L);
+        Date date1 = new Date(1681318836000L);
+
+        return orders.stream()
+                .filter(order -> order.getPaymentDate() != null)
+                .filter(order -> date.before(order.getPaymentDate()) && date1.after(order.getPaymentDate()))
+                .collect(Collectors.toList());
+    }
     public List<Order> findUnPaidOrders () {
         return orders.stream()
                 .filter(order -> order.getPaymentDate() == null)
@@ -62,7 +81,7 @@ public class OrderService {
     }
     public List<Order> applyDiscountForTheWholeOrder (double discount) {
         orders.stream()
-                .peek(order -> order.setCost((int)(order.getCost() * discount)));
+                .forEach(order -> order.setDiscount(discount));
 
         return orders;
     }

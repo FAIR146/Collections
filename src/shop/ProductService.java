@@ -14,13 +14,15 @@ public class ProductService {
     Product iphone = new Product("technic", 60000, "iphone");
     private double discountForToys = 0.1;
     private ArrayList<Product> products;
-    private String alphabet = "abcdefghijklmnopqrstuvwxyz";
+
 
     public ProductService () {
         products = new ArrayList<>(List.of(pasta, teddyBear, pencil, sausages, toyCar, jeans, iphone));
     }
     public void printProductsInAlphabeticalOrder () {
-
+        products.stream()
+                .sorted(new ProductComparator())
+                .forEach(System.out::println);
     }
 
     public List<Product> findProductCostMore100Meal () {

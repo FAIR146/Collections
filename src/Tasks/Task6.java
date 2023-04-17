@@ -1,3 +1,5 @@
+package Tasks;
+
 import BubbleSorting.Human;
 
 import java.util.*;
