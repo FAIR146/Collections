@@ -24,6 +24,7 @@ public class OrderService {
         orders.add(order1);
         orders.add(order2);
         order.addProduct(pasta);
+        order.addProduct(iphone);
         order.addProduct(sausages);
         order.addProduct(teddyBear);
         order.addProduct(teddyBear);
@@ -31,11 +32,14 @@ public class OrderService {
         order.setRegisterDate(new Date());
         order.setPaymentDate(new Date());
         order1.addProduct(jeans);
+        order1.addProduct(pencil);
+        order2.addProduct(teddyBear);
         order1.addProduct(toyCar);
         order1.setPaymentDate(new Date());
         order2.addProduct(iphone);
         order2.addProduct(pencil);
         order2.addProduct(pencil);
+        order2.addProduct(teddyBear);
         order2.setRegisterDate(new Date());
 
     }
@@ -49,6 +53,10 @@ public class OrderService {
 
     public List<Order> findTop3PopularProducts() {
         HashMap<String, Integer> products = new HashMap<>();
+        List<Integer> list = new ArrayList<>(products.values());
+        int max1 = 0;
+        int max2 = 0;
+        int max3 = 0;
         for (Order order : orders) {
             for (Product product : order.getProducts()) {
                 Integer value = products.get(product.getName());
@@ -57,10 +65,27 @@ public class OrderService {
                 } else {
                     products.put(product.getName(), value + 1);
                 }
-
+            }
+            for (int i = 0; i < list.size(); i++) {
+                if (max1 < list.get(i)) {
+                    max1 = list.get(i);
+                }
+                System.out.println(max1 + "1 по попоулярности");
+            }
+            for (int i = 0; i < list.size(); i++) {
+                if (max2 < list.get(i) && list.get(i) != max1) {
+                    max2 = list.get(i);
+                }
+                System.out.println(max2 + "2 по попоулярности");
+            }
+            for (int i = 0; i < list.size(); i++) {
+                if (max3 < list.get(i) && list.get(i) != max1 && list.get(i) != max2) {
+                    max3 = list.get(i);
+                }
+                System.out.println(max3 + "3 по попоулярности");
             }
         }
-        System.out.println(products);
+
         return null;
     }
 
